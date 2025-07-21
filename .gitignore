@@ -3,6 +3,7 @@ Leiningen.gitignore
 target/*
 .lein-failures
 .nrepl-port
+.lein-repl-history
 
 # clojure-lsp
 .calva

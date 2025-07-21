@@ -10,11 +10,15 @@
   (route/expand-routes
    #{["/" :get home-page :route-name :home]}))
 
+(defn service-map []
+  (-> {::http/routes routes
+       ::http/type   :jetty
+       ::http/port   8080
+       ::http/join?  false}
+      http/default-interceptors))
+
 (defn service []
-  {::http/routes routes
-   ::http/type   :jetty
-   ::http/port   8080
-   ::http/join?  false})
+  (http/create-servlet (service-map)))
 
 (defn start []
   (http/start (http/create-server (service))))
