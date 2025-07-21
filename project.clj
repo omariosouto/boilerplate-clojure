@@ -11,8 +11,7 @@
                  [nubank/matcher-combinators "3.8.6"]
                  [org.slf4j/slf4j-simple "2.0.17"]]
   :source-paths ["src"]
-  :main boilerplate-clojure.server
+  :main boilerplate-clojure.dev
   :profiles {:dev {:dependencies []}
-             :prod {:aot :all
-                    :uberjar-name "boilerplate-clojure-standalone.jar"}
+             :prod {:aot [boilerplate-clojure.prod]}
              :test {:test-paths ["test"]}}) 

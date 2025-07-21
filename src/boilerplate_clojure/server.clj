@@ -1,34 +1,13 @@
 (ns boilerplate-clojure.server
   (:require [io.pedestal.http :as http]
-            [io.pedestal.http.route :as route]))
+            [boilerplate-clojure.service :as service]))
 
-(defn home-page [_]
-  {:status 200
-   :body "Hello from Pedestal!"})
-
-(def routes
-  (route/expand-routes
-   #{["/" :get home-page :route-name :home]}))
-
-(defn service-map []
-  (-> {::http/routes routes
-       ::http/type   :jetty
-       ::http/port   8080
-       ::http/join?  false}
-      http/default-interceptors))
-
-(defn service
-  ([] (service {}))
-  ([opts]
-   (http/default-interceptors (merge (service-map) opts))))
+(defonce server (atom nil))
 
 (defn start []
-  (http/start (http/create-server (service))))
+  (reset! server (http/start (http/create-server service/service))))
 
-#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
-(defn stop [server]
-  (http/stop server))
-
-(defn -main [& _]
-  (start)
-  (println "Server started on port 8080"))
+(defn stop []
+  (when @server
+    (http/stop @server)
+    (reset! server nil)))

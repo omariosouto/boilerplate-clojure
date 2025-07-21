@@ -1,17 +1,17 @@
 (ns boilerplate-clojure.integration.server-test
   (:require [clojure.test :refer :all]
-            [io.pedestal.test :refer [response-for]]
-            [boilerplate-clojure.server :as server]
-            [io.pedestal.http :as http]))
+            [clj-http.client :as client]
+            [boilerplate-clojure.server :as server]))
 
-(def service-fn
-  (-> (server/service {:env :test})
-      (::http/service-fn)))
+(use-fixtures :once
+  (fn [tests]
+    (server/start)
+    (Thread/sleep 1000) ; give time to boot
+    (tests)
+    (server/stop)))
 
-(deftest home-page-responds
-  (let [response (response-for service-fn :get "/")]
+(deftest hello-endpoint-test
+  (let [response (client/get "http://localhost:8080/hello"
+                             {:as :json})]
     (is (= 200 (:status response)))
-    (is (= "Hello from Pedestal!" (:body response)))))
-
-(deftest simple-math-works
-  (is (= 4 (+ 2 2))))
+    (is (= {"hello" "world"} (:body response)))))
