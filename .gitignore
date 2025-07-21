@@ -3,8 +3,10 @@ Leiningen.gitignore
 target/*
 
 # clojure-lsp
+.calva
 .lsp
 .clj-kondo/*
 !.clj-kondo/config.edn
 /clojure-lsp*
 .cpcache
+target/stale/leiningen.core.classpath.extract-native-dependencies
