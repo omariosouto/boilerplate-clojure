@@ -10,14 +10,14 @@
   (route/expand-routes
    #{["/" :get home-page :route-name :home]}))
 
-(def service
+(defn service []
   {::http/routes routes
    ::http/type   :jetty
    ::http/port   8080
    ::http/join?  false})
 
 (defn start []
-  (http/start (http/create-server service)))
+  (http/start (http/create-server (service))))
 
 (defn stop [server]
   (http/stop server))
