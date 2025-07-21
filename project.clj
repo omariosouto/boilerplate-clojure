@@ -6,9 +6,11 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [io.pedestal/pedestal.service "0.5.10"]
                  [io.pedestal/pedestal.jetty "0.5.10"]
-                 [org.clojure/tools.namespace "1.4.4"]]
+                 [org.clojure/tools.namespace "1.4.4"]
+                 [nubank/state-flow "5.20.1"]]
   :source-paths ["src"]
   :main boilerplate-clojure.server
   :profiles {:dev {:dependencies []}
              :prod {:aot :all
-                    :uberjar-name "boilerplate-clojure-standalone.jar"}}) 
+                    :uberjar-name "boilerplate-clojure-standalone.jar"}
+             :test {:test-paths ["test"]}}) 

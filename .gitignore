@@ -1,6 +1,8 @@
 Leiningen.gitignore
 
 target/*
+.lein-failures
+.nrepl-port
 
 # clojure-lsp
 .calva
