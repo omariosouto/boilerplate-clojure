@@ -1,6 +1,6 @@
 Leiningen.gitignore
 
-./target/*
+target/*
 
 # clojure-lsp
 .lsp
