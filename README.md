@@ -36,6 +36,7 @@ lein with-profile test test
 Make sure your tests are in the `test/` directory.
 
 # References
+- https://pedestal.io/pedestal/0.6/guides/your-first-api.html
 - https://github.com/pelichero/code4nimbus/tree/main
 - https://github.com/pelichero/code4nimbus/tree/main/clojure-api
 - https://medium.com/@felipepelichero/dependency-injection-with-clojure-6ee5dc839c08

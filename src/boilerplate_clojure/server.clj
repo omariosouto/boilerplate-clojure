@@ -53,8 +53,7 @@
   (io.pedestal.test/response-for (::http/service-fn @server) verb url))
 
 (defn -main [& _args]
-  (println (sum 1 2))
-  ;; https://pedestal.io/pedestal/0.6/guides/your-first-api.html
+  (println (sum 1 2)) 
   (start))
 
 
