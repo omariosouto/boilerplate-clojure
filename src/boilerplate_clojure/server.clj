@@ -23,6 +23,7 @@
 (defn start []
   (http/start (http/create-server (service))))
 
+#_{:clojure-lsp/ignore [:clojure-lsp/unused-public-var]}
 (defn stop [server]
   (http/stop server))
 
