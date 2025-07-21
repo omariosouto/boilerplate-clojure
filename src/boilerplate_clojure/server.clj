@@ -17,8 +17,10 @@
        ::http/join?  false}
       http/default-interceptors))
 
-(defn service []
-  (http/create-servlet (service-map)))
+(defn service
+  ([] (service {}))
+  ([opts]
+   (http/create-server (merge (service-map) opts))))
 
 (defn start []
   (http/start (http/create-server (service))))
