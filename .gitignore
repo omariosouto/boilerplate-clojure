@@ -1,5 +1,7 @@
 Leiningen.gitignore
 
+./target/*
+
 # clojure-lsp
 .lsp
 .clj-kondo/*

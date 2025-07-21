@@ -21,3 +21,7 @@
 
 (defn stop [server]
   (http/stop server))
+
+(defn -main [& _]
+  (start)
+  (println "Server started on port 8080"))
