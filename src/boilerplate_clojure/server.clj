@@ -1,13 +1,7 @@
-(ns boilerplate-clojure.server
-  (:require [io.pedestal.http :as http]
-            [boilerplate-clojure.service :as service]))
+(ns boilerplate-clojure.server)
 
-(defonce server (atom nil))
+(defn sum [a b]
+  (+ a b))
 
-(defn start []
-  (reset! server (http/start (http/create-server service/service))))
-
-(defn stop []
-  (when @server
-    (http/stop @server)
-    (reset! server nil)))
+(defn -main [& _args]
+  (println (sum 1 2)))
