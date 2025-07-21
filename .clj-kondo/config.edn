@@ -1,0 +1,4 @@
+{:linters {:clj-kondo {:config-in-project true}}
+ :clj-kondo
+ {:custom-test
+  {:clojure.test/deftest [state-flow.core/defflow]}}}

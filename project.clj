@@ -3,6 +3,7 @@
   :url "https://github.com/omariosouto/boilerplate-clojure" 
   :license {:name "MIT"}
   :dependencies [[org.clojure/clojure "1.12.1"]
-                 [cheshire "5.10.0"]]
+                 [cheshire "5.10.0"]
+                 [nubank/state-flow "5.20.1"]]
   :source-paths ["src"]
   :main boilerplate-clojure.server) 
