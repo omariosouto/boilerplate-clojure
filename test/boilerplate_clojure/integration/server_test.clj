@@ -1,19 +1,15 @@
 (ns boilerplate-clojure.integration.server-test
-  (:require [clojure.test :refer [deftest is]]
-            [state-flow.api :refer [defflow flow]]
-            [io.pedestal.test :refer [response-for]] 
+  (:require [clojure.test :refer :all]
+            [io.pedestal.test :refer [response-for]]
             [boilerplate-clojure.server :as server]
             [io.pedestal.http :as http]))
 
-(defn make-request [{:keys [path method body]}]
-  (let [service-map (server/service {:env :test})
-        service-fn (::http/service-fn service-map)]
-    (response-for service-fn method path body)))
+(def service-fn
+  (-> (server/service {:env :test})
+      (::http/service-fn)))
 
 (deftest home-page-responds
-  (let [response (make-request {:path "/"
-                                :method :get
-                                :body "Hello from Pedestal!"})]
+  (let [response (response-for service-fn :get "/")]
     (is (= 200 (:status response)))
     (is (= "Hello from Pedestal!" (:body response)))))
 

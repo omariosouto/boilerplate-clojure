@@ -20,7 +20,7 @@
 (defn service
   ([] (service {}))
   ([opts]
-   (http/create-server (merge (service-map) opts))))
+   (http/default-interceptors (merge (service-map) opts))))
 
 (defn start []
   (http/start (http/create-server (service))))
