@@ -6,4 +6,6 @@
                  [cheshire "5.10.0"]
                  [nubank/state-flow "5.20.1"]]
   :source-paths ["src"]
-  :main boilerplate-clojure.server) 
+  :main boilerplate-clojure.server
+  
+  :test-paths ["test/"]) 
