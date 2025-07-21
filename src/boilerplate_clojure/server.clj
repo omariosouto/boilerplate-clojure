@@ -56,3 +56,6 @@
   (println (sum 1 2))
   ;; https://pedestal.io/pedestal/0.6/guides/your-first-api.html
   (start))
+
+
+; TODO: https://pedestal.io/pedestal/0.6/guides/pedestal-with-component.html
