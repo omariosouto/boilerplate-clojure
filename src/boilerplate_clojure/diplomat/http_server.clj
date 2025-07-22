@@ -1,28 +1,13 @@
 (ns boilerplate-clojure.diplomat.http-server
   (:require
-    [boilerplate-clojure.config :as config]
-    [clojure.set :as set]))
+    [boilerplate-clojure.config :as config]))
 
-(defn current-version 
-  [_]
-  {:status 200
-   :body {:version (config/version {})}})
-
-(def common-interceptors [])
-
-(def default-routes
-  #{["/api/version"
-     :get (conj common-interceptors
-                ; doc.desc "..."
-                ; auth/public
-                ; adapt/externalise! {200 out.version/Version}
-                current-version)
-     :route-name :version]})
-
-(def application-routes
-  #{})
+(def version-interceptor
+  {:name :version
+   :enter
+   (fn [context]
+     (let [response {:status 200 :body {:version (config/version {})}}]
+       (assoc context :response response)))})
 
 (def routes
-  (set/union
-   default-routes
-   application-routes))
+  #{["/api/version" :get version-interceptor :route-name :version]})

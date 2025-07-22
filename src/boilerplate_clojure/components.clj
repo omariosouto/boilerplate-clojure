@@ -1,17 +1,22 @@
 (ns boilerplate-clojure.components
-  (:require [boilerplate-clojure.diplomat.http-server :as diplomat.http-server]
+  (:require [boilerplate-clojure.config :as config]
             [io.pedestal.http :as http]
             [io.pedestal.http.route :as route]
-            [io.pedestal.test :as test]))
+            [io.pedestal.test :as test]
+            [clojure.data.json :as json]))
 
-;; (defn local [initial-state]
-;;   (println "local"))
-;; (defn test [initial-state]
-;;   (println "test"))
-
+(def version-interceptor
+  {:name :version
+   :enter
+   (fn [context]
+     (let [response {:status 200 
+                     :body (json/write-str {:version (config/version {})})
+                     :headers {"Content-Type" "application/json"}}]
+       (assoc context :response response)))})
 
 (def routes
-  (diplomat.http-server/routes))
+  (route/expand-routes
+   #{["/api/version" :get version-interceptor :route-name :version]}))
 
 (def service-map
   {::http/routes routes
@@ -36,3 +41,8 @@
           (http/start (http/create-server
                        (assoc service-map
                               ::http/join? false)))))
+
+(defn stop-dev []
+  (when @server
+    (http/stop @server)
+    (reset! server nil)))
