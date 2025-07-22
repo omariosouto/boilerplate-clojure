@@ -9,6 +9,6 @@
                  [org.clojure/data.json "2.4.0"]
                  [org.slf4j/slf4j-simple "2.0.17"]]
   :source-paths ["src"]
-  :main boilerplate-clojure.server/-main
+  :main boilerplate-clojure.server
   
   :test-paths ["test/"]) 

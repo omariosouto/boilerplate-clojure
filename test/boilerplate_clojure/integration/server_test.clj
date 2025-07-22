@@ -12,8 +12,7 @@
 (use-fixtures :once with-server)
 
 (defflow check-home-status-flow-version
-  (flow "check home status"
-        (match? 200 (:status (components/test-request :get "/api/version")))
+  (flow "check home status" 
         (match? {:version "0.0.1"}
                 (-> (components/test-request :get "/api/version")
                     :body

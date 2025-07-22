@@ -28,4 +28,4 @@
 ;; (def servlet-service  container-servlet/servlet-service)
 
 ; TODO: https://pedestal.io/pedestal/0.6/guides/pedestal-with-component.html
-(def -main (partial (components/create-and-start-system!)))
+(def -main (partial components/create-and-start-system!))
